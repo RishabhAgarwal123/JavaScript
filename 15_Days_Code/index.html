@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>15 Days Projects</title>
+</head>
+
+<body>
+    <h1>15 Days Projects</h1>
+    <div class="flex-container">
+        <div class="calculator">
+            <input class="calulatorInput" type="text" id="userInput" placeholder="0" disabled>
+            <input class="calulatorInput" type="text" id="calculatedOutput" placeholder="0" disabled>
+            <table>
+                <tr>
+                    <td onclick="calcad('(')">(</td>
+                    <td onclick="calcad(')')">)</td>
+                    <td onclick="removeCh()">&lt;-</td>
+                    <td onclick="calcad('+')" class="vari">+</td>
+                </tr>
+
+                <tr>
+                    <td onclick="calcad('7')">7</td>
+                    <td onclick="calcad('8')">8</td>
+                    <td onclick="calcad('9')">9</td>
+                    <td onclick="calcad('-')" class="vari">-</td>
+                </tr>
+
+                <tr>
+                    <td onclick="calcad('4')">4</td>
+                    <td onclick="calcad('5')">5</td>
+                    <td onclick="calcad('6')">6</td>
+                    <td onclick="calcad('*')" class="vari">*</td>
+                </tr>
+
+                <tr>
+                    <td onclick="calcad('1')">1</td>
+                    <td onclick="calcad('2')">2</td>
+                    <td onclick="calcad('3')">3</td>
+                    <td onclick="calcad('/')" class="vari">/</td>
+                </tr>
+
+                <tr>
+                    <td onclick="reset()"><b>C</b></td>
+                    <td onclick="calcad('0')">0</td>
+                    <td onclick="calcad('.')">.</td>
+                    <td class="equalButton" onclick="execm()">=</td>
+                </tr>
+            </table>
+        </div>
+        <div class="digitalClock">
+            <div class="digitalClockContainer">
+                <div class="time">
+                    <span id="hour">00</span>
+                    <span class="blank-colon">:</span>
+                    <span id="minute">00</span>
+                    <span class="blank-colon">:</span>
+                    <span id="sec">00</span>
+                </div>
+                <div class="date-container">
+                    <span id="date">01/01/2021</span>,
+                    <span id="day">Sunday</span>
+                </div>
+            </div>
+        </div>
+        <div class="todo">
+            <div class="todoContainer">
+                <h2>To Do List</h2>
+                <!-- <form> -->
+                <div class="form">
+                    <input type="text" id="listItem" autocomplete="off" placeholder="List Item">
+                    <button class="add" onclick="add()">Add</button>
+                </div>
+                <!-- </form> -->
+                <ul id="list">
+                    <!-- <li id="li"> <span><button class="close"></button></span>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="flex-container">
+        <div class="rockPaperScissor">
+            <div class="rockPaperScissorContainer">
+                <h1>Rock, Paper &amp; Scissors</h1>
+                <div class="rpgcont">
+                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/34372-200.png" title="Rock"
+                        onclick="game('rock')">
+                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/1476-200.png" title="Paper"
+                        onclick="game('paper')">
+                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/9049-200.png" title="Scissors"
+                        onclick="game('scissors')">
+                </div>
+                <p id="userChoice">Choose your move</p>
+                <div id="score">
+                    <span class="sides">User: 0</span>
+                    <span class="sides">Computer: 0</span>
+                </div>
+            </div>
+        </div>
+        <div class="socialMediaicons">
+            <div class="wrapper">
+                <h2 class="title">Social Media Icons</h2>
+                <div class="socialIcons">
+                    <a href="#" title="Facebook" class="icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" title="Twitter" class="icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" title="Instagram" class="icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" title="GitHub" class="icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" title="LinkedIn" class="icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="starRating">
+            <div class="starRatingContainer">
+                <div class="star-container">
+                    <button class="star star5" data-value="5" onclick="rate(this)">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="star star4" data-value="4" onclick="rate(this)">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="star star3" data-value="3" onclick="rate(this)">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="star star2" data-value="2" onclick="rate(this)">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="star star1" data-value="1" onclick="rate(this)">
+                        <i class="fas fa-star"></i>
+                    </button>
+                </div>
+                <p id="rating">Rate Us :)</p>
+            </div>
+        </div>
+    </div>
+    <script src="js/day1_calculator.js"></script>
+    <script src="js/day2_digital_clock.js"></script>
+    <script src="js/day3_todo_list.js"></script>
+    <script src="js/day4_rock_paper_scissor.js"></script>
+    <script src="js/day6_star_rating.js"></script>
+</body>
+
+</html>
