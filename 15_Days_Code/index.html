@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         referrerpolicy="no-referrer" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>15 Days Projects</title>
 </head>
@@ -152,11 +154,73 @@
             </div>
         </div>
     </div>
+    <div class="flex-container">
+        <div class="stopwatch">
+            <div class="stopwatchContainer">
+                <h1>Stopwatch</h1>
+                <p id="time">00 : 00.0</p>
+                <div class="buttons">
+                    <button id="start" onclick="this.disabled=true;callTimer()">Start</button>
+                    <button id="stop" onclick="stopTimer()">Stop</button>
+                    <button id="clear" onclick="clearTimer()">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cardContainer">
+            <div class="card">
+                <div class="image">
+                    <img src="images/profile.jpg" alt="Profile" class="profile">
+                </div>
+                <div class="details">
+                    <p class="cardName">Rishabh Agarwal</p>
+                    <p class="text">Lorem ipsum dolor sit amet consectetur.</p>
+                    <div class="cardSocialIcons">
+                        <a href="" class="cardSocial">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="" class="cardSocial">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="" class="cardSocial">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="" class="cardSocial">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="cardProject">
+                <h3>Facebook Clone</h3>
+                <p class="description">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi quasi praesentium repudiandae aut.
+                </p>
+                <ul class="languages">
+                    <li class="language">JS</li>
+                    <li class="language">CSS</li>
+                </ul>
+            </div>
+
+            <div class="cardProject">
+                <h3>YouTube Clone</h3>
+                <p class="description">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi quasi praesentium repudiandae aut.
+                </p>
+                <ul class="languages">
+                    <li class="language">JS</li>
+                    <li class="language">CSS</li>
+                    <li class="language">React</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <script src="js/day1_calculator.js"></script>
     <script src="js/day2_digital_clock.js"></script>
     <script src="js/day3_todo_list.js"></script>
     <script src="js/day4_rock_paper_scissor.js"></script>
     <script src="js/day6_star_rating.js"></script>
+    <script src="js/day7_stopwatch.js"></script>
 </body>
 
 </html>

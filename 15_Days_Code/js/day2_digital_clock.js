@@ -4,8 +4,8 @@ window.onload = function () {
 
 const updateInterval = function () {
     const hour = document.querySelector('#hour');
-    const minute = document.querySelector('#minute');
-    const second = document.querySelector('#sec');
+    const min = document.querySelector('#minute');
+    const sec = document.querySelector('#sec');
 
     let date = new Date();
     hours = date.getHours();
@@ -16,8 +16,8 @@ const updateInterval = function () {
     if (minutes >= 0 && minutes <= 9) minutes = '0' + minutes;
     if (seconds >= 0 && seconds <= 9) seconds = '0' + seconds;
     hour.innerHTML = hours;
-    minute.innerHTML = minutes;
-    second.innerHTML = seconds;
+    min.innerHTML = minutes;
+    sec.innerHTML = seconds;
 
     // Date
     const dateEl = document.querySelector('#date');
