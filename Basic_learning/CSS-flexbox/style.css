@@ -1,0 +1,26 @@
+.flex-container {
+    display: flex;
+    border: 2px solid black;
+    /* flex-direction: row, column, row-reverse, column-reverse; */
+    justify-content: center;
+    /* justify-content: flex-start, flex-start; */
+    align-items: center;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap-reverse; */
+    /* flex-direction: column wrap; */
+}
+
+.flex-item {
+    background-color: black;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.item1 {
+    flex-grow: 2;
+    /* order: 4; */
+    flex-shrink: 2;
+    align-self: center;
+}

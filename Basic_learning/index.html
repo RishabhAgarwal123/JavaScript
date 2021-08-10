@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            min-width: 100px;
+            min-height: 100px;
+            padding: 30px;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="/index.js" type="text/javascript">
+        function attach() {
+            let count = 0;
+            document.getElementById('clickMe').addEventListener('Click', function abc() {
+                console.log("Button Clicked", ++count);
+            })
+        }
+        attach()
+    </script>
+</head>
+
+<body>
+    <h1>Hello js</h1>
+    <button id="clickMe">Click Me</button>
+    <!--Event Bubbling and Capturing-->
+    <div id="grandParent">
+        <div id="parent">
+            <div id="child">
+
+            </div>
+        </div>
+    </div>
+    <!--Event Delegation-->
+    <div>
+        <ul id="categories">
+            <li id="laptops">Laptops</li>
+            <li id="cameras">Cameras</li>
+            <li id="shoes">Shoes</li>
+        </ul>
+    </div>
+    <div id="form">
+        <input type="text" id="name" data-uppercase>
+        <!--This uppercase is user defined-->
+        <input type="text" id="mobile">
+        <input type="text" id="email">
+    </div>
+    <!-- Debouncing -->
+    <input type="text" onkeyup="search()">
+    <!--Throttling-->
+    <input type="text" onclick="betterExperience()">
+    <script src="/index.js" type="text/javascript"></script>
+</body>
+
+</html>
