@@ -582,6 +582,91 @@ h2 .title {
   transition: 100ms ease-in-out;
 }
 
+/* Login form */
+.loginForm {
+  display: flex;
+  height: 600px;
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+  background: #EEEEEE;
+}
+
+.loginFormContainer {
+  max-width: 300px;
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+.loginPic {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 60px;
+  background: linear-gradient(to right, #9d50bb, #6e48aa);
+  transform: translate(-50%, -50%);
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginHeading {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.loginFormContainer label {
+  margin-top: 20px;
+  font-size: 12px;
+  color: rgb(77, 77, 77);
+  font-weight: 600;
+}
+
+.loginInput {
+  padding: 8px;
+  outline: none;
+  border: 0;
+  background: #EEE;
+}
+
+.loginFormContainer label, .links, button {
+  margin-top: 20px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.links a {
+  color: #6e48aa;
+}
+
+.register {
+  margin: 0;
+}
+
+.loginButton {
+  background: linear-gradient(to right, #9d50bb, #6e48aa);
+  padding: 8px;
+  border: 0;
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 @media only screen and (max-width: 600px) {
   body {
     margin: 0;
@@ -605,7 +690,8 @@ h2 .title {
   .starRating,
   .stopwatch,
   .cardContainer,
-  .colorContainer {
+  .colorContainer,
+  .loginForm {
     margin: 0;
     width: 100%;
   }

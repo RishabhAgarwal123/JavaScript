@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
     <title>15 Days Projects</title>
 </head>
@@ -218,6 +219,31 @@
         <div class="colorContainer" id="backColor">
             <p id="colorId">...</p>
             <button onclick="getColor()">Change</button>
+        </div>
+    </div>
+
+    <div class="flex-container">
+        <div class="loginForm">
+            <div class="loginFormContainer">
+                <div class="loginPic">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2 class="loginHeading">Login</h2>
+                <form method="POST" class="login">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="loginInput" autocomplete="off"
+                        placeholder="Rishabh Agarwal">
+
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="loginInput" autocomplete="off" placeholder="Password">
+
+                    <div class="links">
+                        <a class="forgetPassword" href="#">Forget Password</a>
+                        <p class="register">Not a User <a href="">Register</a></p>
+                    </div>
+                    <button type="submit" class="loginButton">Login</button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="js/day1_calculator.js"></script>
