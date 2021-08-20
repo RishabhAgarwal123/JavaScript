@@ -17,7 +17,7 @@ const restaurant = {
   },
 
   orderDelivery: function ({ startIndex = 1, mainIndex = 0, time = '20:00', address }) {
-    console.log(`Order Recieved! ${this.starterMenu[startIndex]} and ${this.mainMenu[mainIndex]} will be delivered at ${address} on ${time}`);
+    // console.log(`Order Recieved! ${this.starterMenu[startIndex]} and ${this.mainMenu[mainIndex]} will be delivered at ${address} on ${time}`);
   },
 
   openingHours: {
@@ -38,14 +38,14 @@ const restaurant = {
 
 // Spread Operator
 const newArray = [...restaurant.mainMenu, 'PIZZA'];
-console.log(newArray);
-console.log(...newArray);
+// console.log(newArray);
+// console.log(...newArray);
 
 // Iterables: Arrays, strings, maps, sets NOT OBJECTs
-const str = 'RISHABH';
-const letters = [...str, 'A', ...'GARWAL'];
-console.log(letters);
-console.log(...letters);
+// const str = 'RISHABH';
+// const letters = [...str, 'A', ...'GARWAL'];
+// console.log(letters);
+// console.log(...letters);
 
 // Destructuring- It's s way of unpacking an array or object into seperate variables or to break down a complex data structure into a smaller data structure.
 
@@ -78,3 +78,86 @@ console.log(...letters);
 // // Default values
 // const [p = 1, q = 1, r = 1] = [90, 100];
 // console.log(p, q, r);
+
+// Coding Challenge
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+    'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+  printGoals: function (...players) {
+    console.log(`${players.length} Total goals are scored`);
+  }
+};
+
+const [player1, player2] = game.players;
+const [gk1, ...fieldPlayers1] = [...player1];
+const [gk2, ...fieldPlayers2] = [...player2];
+const allPlayers = [...player2, ...player2];
+const players1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
+
+const { team1, draw, team2 } = { ...game.odds };
+
+// game.printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+game.printGoals(...game.scored);
+
+team1 > team2 && console.log('Team 1 is likely to win');
+team1 < team2 && console.log('Team 2 is likely to win');
+
+// Coding Challenge - 2
+for (const [index, value] of game.scored.entries()) {
+  console.log(`Goal ${index + 1}: ${value}`)
+}
+
+let average = 0;
+for (const value of Object.values(game.odds)) {
+  average += value;
+}
+console.log(average / 3);
+
+console.log(`Odd of victory ${game.team1}: ${game.odds.team1}`);
+console.log(`Odd of draw: ${game.odds.x}`);
+console.log(`Odd of victory ${game.team2}: ${game.odds.team2}`);
+
+let scorers = {};
+for (const [index, value] of game.scored.entries()) {
+  if (scorers[value] = value)
+    scorers[value] = value;
+}
+console.log(scorers);
