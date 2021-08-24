@@ -188,3 +188,19 @@ for (const [key, value] of gameEvents) {
   const half = key <= 45 ? 'First' : 'Second';
   console.log(`[${half} Half] ${key}: ${value}`);
 }
+
+// Coding Challenge - 4
+const convertString = function (inputString) {
+  const lower = inputString.toLowerCase();
+  const remove = lower.split('_');
+  const camelCase = remove[0] + remove[1][0].toUpperCase() + remove[1].slice(1);
+  console.log(camelCase);
+}
+
+convertString('Some_Variable');
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.replaceAll('_', ' ')} ${from.slice(0, 3).toUpperCase()} to ${to.slice(0, 3).toUpperCase()} (${time.replace(':', 'h')})`;
+  console.log(output);
+}
