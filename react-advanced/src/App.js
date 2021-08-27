@@ -13,7 +13,9 @@ import React from 'react';
 // import ControlledInputs from './tutorial/4-forms/setup/1-controlled-inputs';
 // import ControlledInputs from './tutorial/4-forms/setup/2-multiple-inputs';
 // import UseRefBasics from './tutorial/5-useRef/setup/1-useRef-basics';
-import Index from './tutorial/6-useReducer/setup';
+// import Index from './tutorial/6-useReducer/setup';
+// import PropDrilling from './tutorial/7-prop-drilling/setup/1-prop-drilling';
+import ContextAPI from './tutorial/8-useContext/setup/1-context-api';
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
       {/* <ControlledInputs /> */}
       {/* <ControlledInputs /> */}
       {/* <UseRefBasics /> */}
-      <Index />
+      {/* <Index /> */}
+      {/* <PropDrilling /> */}
+      <ContextAPI />
     </div>
   )
 }
