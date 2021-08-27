@@ -12,7 +12,8 @@ import React from 'react';
 // import ShowHide from './tutorial/3-conditional-rendering/setup/3-show-hide';
 // import ControlledInputs from './tutorial/4-forms/setup/1-controlled-inputs';
 // import ControlledInputs from './tutorial/4-forms/setup/2-multiple-inputs';
-import UseRefBasics from './tutorial/5-useRef/setup/1-useRef-basics';
+// import UseRefBasics from './tutorial/5-useRef/setup/1-useRef-basics';
+import Index from './tutorial/6-useReducer/setup';
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
       {/* <ShowHide /> */}
       {/* <ControlledInputs /> */}
       {/* <ControlledInputs /> */}
-      <UseRefBasics />
+      {/* <UseRefBasics /> */}
+      <Index />
     </div>
   )
 }
