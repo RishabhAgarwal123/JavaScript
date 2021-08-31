@@ -111,3 +111,64 @@ const poll = {
 document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
 
 poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+
+// Closures 
+const secureBooking = function () {
+    let passengerCount = 0;
+
+    return function () {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+    }
+}
+
+const booker = secureBooking(); // After this secureBooking is removed from execution context because it's completed the functionality
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+let f;
+const g = function () {
+    const a = 100;
+    f = function () {
+        console.log(a * 2);
+    }
+}
+
+const h = function () {
+    const b = 999;
+    f = function () {
+        console.log(b * 2);
+    }
+}
+
+g();
+f();
+console.dir(f);
+// Re-assign 
+h();
+f();
+console.dir(f);
+
+// Example 2
+const boardPassenger = function (n, wait) {
+    const perGroup = n / 3;
+
+    setTimeout(() => {
+        console.log(`We are boarding all passengers ${n}`);
+        console.log(`There are 3 groups with ${perGroup} passengers`);
+    }, wait * 1000); // Performed after wait is completed
+    console.log(`We are boarding all passengers in ${wait} seconds`); // Performed at a time
+}
+
+boardPassenger(90, 3);
+
+(function () {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+    document.querySelector('body').addEventListener('click', function () {
+        header.style.color = 'blue';
+    })
+})();
