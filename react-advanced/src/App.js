@@ -17,7 +17,9 @@ import React from 'react';
 // import PropDrilling from './tutorial/7-prop-drilling/setup/1-prop-drilling';
 // import ContextAPI from './tutorial/8-useContext/setup/1-context-api';
 // import Example from './tutorial/9-custom-hooks/setup/1-fetch-example';
-import Index from './tutorial/10-prop-types/setup';
+// import Index from './tutorial/10-prop-types/setup';
+// import ReactRouterSetup from './tutorial/11-react-router/setup';
+import Index from './tutorial/12-memo-useMemo-useCallback/setup';
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
       {/* <PropDrilling /> */}
       {/* <ContextAPI /> */}
       {/* <Example /> */}
+      {/* <Index /> */}
+      {/* <ReactRouterSetup /> */}
       <Index />
     </div>
   )
