@@ -61,23 +61,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayTransactions = (transactions) => {
-  containerMovements.innerHTML = ''; // To override the data
-  transactions.forEach((transaction, index) => {
-    const transactionType = transaction > 0 ? 'deposit' : 'withdrawal';
-
-    const transactionHtml = `
-        <div class="movements__row">
-          <div class="movements__type movements__type--${transactionType}">${index + 1} ${transactionType}</div>
-          <div class="movements__value">${transaction}€</div>
-        </div>`
-
-    containerMovements.insertAdjacentHTML('afterbegin', transactionHtml);
-  });
-}
-
-displayTransactions(account1.movements);
-
 const createUsername = (accounts) => {
   accounts.forEach((account) => {
     account.username = account.owner.toLowerCase().split(' ').map((name) => name[0]).join('');
@@ -85,34 +68,183 @@ const createUsername = (accounts) => {
 }
 
 createUsername(accounts);
-console.log(accounts);
 
-const deposits = account1.movements.filter((amount) => amount > 0);
-const withdraws = account1.movements.filter((amount) => amount < 0);
-console.log(deposits, withdraws);
+const ui = () => {
+  inputLoginUsername.value = '';
+  inputLoginPin.value = '';
+}
 
-const printBalance = (balances) => {
-  const accountBalance = balances.reduce((total, balance) => {
+const updateUI = (currentAccount) => {
+  displayTransactions(currentAccount.movements);
+  displaySummary(currentAccount.movements, currentAccount.interestRate);
+  printBalance(currentAccount);
+}
+
+const displayTransactions = (transactions, sort = false) => {
+  containerMovements.innerHTML = ''; // To override the data
+
+  const newTransactions = sort ? transactions.slice().sort((a, b) => a - b) : transactions;
+
+  newTransactions.forEach((transaction, index) => {
+    const transactionType = transaction > 0 ? 'deposit' : 'withdrawal';
+
+    const transactionHtml = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${transactionType}">${index + 1} ${transactionType}</div>
+          <div class="movements__value">${transaction} €</div>
+        </div>`
+
+    containerMovements.insertAdjacentHTML('afterbegin', transactionHtml);
+  });
+}
+
+const displaySummary = (transactions, interestRate) => {
+  const deposit = transactions.filter((transaction) => transaction > 0).reduce((total, current) => total + current, 0);
+
+  const withdraw = transactions.filter((transaction) => transaction < 0).reduce((total, current) => total + current, 0);
+
+  const interest = transactions.filter((transaction) => transaction > 0)
+    .map((credit) => (credit * interestRate) / 100)
+    .filter((inter) => inter >= 1)
+    .reduce((totalInterest, current) => totalInterest + current, 0);
+
+  labelSumIn.textContent = `${deposit} €`;
+  labelSumOut.textContent = `${Math.abs(withdraw)} €`;
+  labelSumInterest.textContent = `${Math.abs(interest).toFixed(2)} €`;
+}
+// const deposits = account1.movements.filter((amount) => amount > 0);
+// const withdraws = account1.movements.filter((amount) => amount < 0);
+// console.log(deposits, withdraws);
+const printBalance = (account) => {
+  account.accountBalance = account.movements.reduce((total, balance) => {
     return total + balance;
   }, 0);
-  labelBalance.textContent = `${accountBalance}€`;
+  labelBalance.textContent = `${account.accountBalance} €`;
 }
-printBalance(account1.movements);
+
+let currentAccount;
+const login = (event) => {
+  event.preventDefault();
+  currentAccount = accounts.find((account) => account.username === inputLoginUsername.value && account.pin === Number(inputLoginPin.value));
+
+  if (currentAccount) {
+    labelWelcome.textContent = `Welcome back ${currentAccount.owner}`;
+    containerApp.style.opacity = 100;
+    updateUI(currentAccount);
+  } else {
+    containerApp.style.opacity = 0;
+    alert('Wrong Credentials');
+    labelWelcome.textContent = 'Log in to get started';
+  }
+  ui();
+}
+
+const transfer = (event) => {
+  event.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const recieverAccount = accounts.find((account) => account.username === inputTransferTo.value);
+
+  if (amount > 0 && recieverAccount && amount <= currentAccount.accountBalance && currentAccount.username !== recieverAccount?.username) {
+    currentAccount.movements.push(-amount);
+    recieverAccount.movements.push(amount);
+    updateUI(currentAccount);
+  } else {
+    alert('Insufficient Funds');
+  }
+  ui();
+}
+
+const loan = (event) => {
+  event.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  const loanCondition = currentAccount.movements.some((money) => money >= amount * 0.10);
+
+  if (amount > 0 && loanCondition) {
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  } else {
+    alert('Not eligible for loan');
+  }
+  inputLoanAmount.value = '';
+}
+
+const closeAccount = (event) => {
+  event.preventDefault();
+  const username = inputCloseUsername.value;
+  const pin = Number(inputClosePin.value);
+
+  if (username === currentAccount.username && pin === currentAccount.pin) {
+    const currentUser = accounts.findIndex((account) => account.username === username && account.pin === pin);
+    accounts.splice(currentUser, 1);
+    containerApp.style.opacity = 0;
+  } else {
+    alert(`User didn't match`);
+    containerApp.style.opacity = 100;
+  }
+  ui();
+}
+
+let sorted = false;
+const sort = (event) => {
+  event.preventDefault();
+  // !sorted ? currentAccount.movements.sort((a, b) => b - a) : currentAccount.movements;
+  // updateUI(currentAccount);
+  displayTransactions(currentAccount.movements, !sorted)
+  sorted = !sorted;
+}
+
+btnLogin.addEventListener('click', login);
+btnTransfer.addEventListener('click', transfer);
+btnLoan.addEventListener('click', loan);
+btnClose.addEventListener('click', closeAccount);
+btnSort.addEventListener('click', sort);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// Ascending
+// movements.sort((a, b) => a > b ? 1 : -1);
+movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// Descending
+// movements.sort((a, b) => b > a ? 1 : -1);
+movements.sort((a, b) => b - a);
+// console.log(movements);
+
+// Rduce Example
+const result = movements.reduce((total, current) => {
+  total.totalCount += 1,
+    total.totalSum += current;
+  return total;
+}, {
+  totalCount: 0,
+  totalSum: 0
+});
+
+// console.log(result);
+
+const str = 'this is a LONG title but not too long';
+const convertTitleCase = (input) => {
+  const captalize = (str) => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ['a', 'an', 'the', 'and'];
+  const titleCase = input.toLowerCase().split(' ').map((word) => exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1)).join(' ');
+  return captalize(titleCase);
+}
+console.log(convertTitleCase(str));
 
 /////////////////////////////////////////////////
-const arr = [1, 2, 3, 4, 5];
+// const arr = [1, 2, 3, 4, 5];
 // Slice
 // console.log(arr.slice(3));
 // console.log(arr);
@@ -142,21 +274,19 @@ const arr = [1, 2, 3, 4, 5];
 // checkDogs(dogsJulia, dogsKatie);
 
 // Coding Challenge 2
-const dogsAge = [5, 2, 4, 1, 15, 8, 3];
+// const dogsAge = [5, 2, 4, 1, 15, 8, 3];
 
-const calcAverageHumanAge = (ages) => {
-  const newAges = ages.map((age) => {
-    if (age <= 2) {
-      return 2 * age;
-    } else {
-      return 16 + age * 4;
-    }
-  });
-  const newAdult = newAges.filter((age) => age >= 18);
-  const newAge = (newAdult.reduce((avergae, current) => {
-    return avergae + current;
-  }, 0) / newAdult.length).toFixed(2);
-  console.log(newAge);
-}
+// const calcAverageHumanAge = (ages) => {
+//   const newAge = ages.map((age) => {
+//     if (age <= 2) {
+//       return 2 * age;
+//     } else {
+//       return 16 + age * 4;
+//     }
+//   }).filter((age) => age >= 18).reduce((avergae, current, i, arr) => {
+//     return avergae + current / arr.length;
+//   }, 0);
+//   console.log(newAge);
+// }
 
-calcAverageHumanAge(dogsAge);
+// calcAverageHumanAge(dogsAge);
