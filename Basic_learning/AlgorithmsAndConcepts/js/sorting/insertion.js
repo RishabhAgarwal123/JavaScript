@@ -13,5 +13,6 @@ const sortArray = function (elements) {
     }
     return elements;
 }
-
+const truncate = (input) => input.length > 5 ? `${input.substring(0, 5)}...` : input;
+console.log(truncate('I am Rishabh Agarwal'));
 console.log(sortArray(elements));
