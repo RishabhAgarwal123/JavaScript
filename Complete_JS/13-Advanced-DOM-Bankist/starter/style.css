@@ -122,7 +122,7 @@ img {
   width: 100%;
   padding: 0 6rem;
   z-index: 100;
-  position: fixed;
+  /* position: fixed; */
 }
 
 /* nav and stickly class at the same time */
