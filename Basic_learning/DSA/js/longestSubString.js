@@ -40,13 +40,14 @@ const lengthOfLongestSubstring = function (s) {
 console.log(lengthOfLongestSubstring(str));
 
 const lengthOfLongestSubstring1 = (s) => {
+    if (s.length <= 1) return s.length;
     let longest = 0, left = 0;
     const charsSeen = new Map();
     for (let right = 0; right < s.length; right++) {
         const currentElement = s[right];
         const prev = charsSeen.get(currentElement);
         if (prev >= left) {
-
+            prev = prev + 1;
         }
         charsSeen.set(currentElement, right);
         longest = Math.max(longest, right - left + 1);
