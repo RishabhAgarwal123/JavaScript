@@ -45,7 +45,7 @@ const lengthOfLongestSubstring1 = (s) => {
     const charsSeen = new Map();
     for (let right = 0; right < s.length; right++) {
         const currentElement = s[right];
-        const prev = charsSeen.get(currentElement);
+        let prev = charsSeen.get(currentElement);
         if (prev >= left) {
             prev = prev + 1;
         }
