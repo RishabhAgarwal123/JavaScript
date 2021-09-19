@@ -3,10 +3,24 @@ import './Work.scss';
 import {workData} from '../../mockData';
 
 const Work = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    let [currentSlide, setCurrentSlide] = useState(0);
 
-    const handleClick = (position) => {
-        position === 'left' ? setCurrentSlide(currentSlide > 0 ? currentSlide - 1 : 2) : setCurrentSlide(currentSlide < workData.length - 1 ? currentSlide + 1 : 0);
+    const prevSlide = () => {
+        if (currentSlide === 0) {
+            currentSlide = workData.length - 1;
+        } else {
+            currentSlide = currentSlide - 1;
+        }
+        setCurrentSlide(currentSlide);
+    }
+
+    const nextSlide = () => {
+        if (currentSlide === workData.length - 1) {
+            currentSlide = 0;
+        } else {
+            currentSlide = currentSlide + 1;
+        }
+        setCurrentSlide(currentSlide);
     }
 
     return (
@@ -14,7 +28,7 @@ const Work = () => {
             {
                 workData.map((data) => {
                     const {title, icon, desc, img} = data;
-                return <div className="slider" key={data.id} style={{transform: `translateX(-${currentSlide * 100}vw)`}}>
+                return <div className="slider" key={data.id} style={{transform: `translateX(${100 * (data.id - currentSlide)}%)`}}>
                     <div className="container">
                         <div className="itemContainer">
                             <div className="left">
@@ -36,8 +50,8 @@ const Work = () => {
                 </div>
                 })
             }
-            <img src="assets/arrow.png" className="arrow left" alt="" onClick={() => {handleClick('left')}} />
-            <img src="assets/arrow.png" className="arrow right" alt="" onClick={() => {handleClick('right')}} />
+            <img src="assets/arrow.png" className="arrow left" alt="" onClick={() => {prevSlide()}} />
+            <img src="assets/arrow.png" className="arrow right" alt="" onClick={() => {nextSlide()}} />
         </div>
     );
 }

@@ -1,3 +1,5 @@
+@import "../../Global.scss";
+
 .work {
   background-color: lightgreen;
   display: flex;
@@ -13,10 +15,22 @@
     &.left {
       left: 100px;
       transform: rotate(180deg);
+
+      @include mobile {
+        left: 0px;
+        background-color: black;
+        opacity: 0.2;
+      }
     }
 
     &.right {
       right: 100px;
+
+      @include mobile {
+        right: 0px;
+        background-color: black;
+        opacity: 0.2;
+      }
     }
   }
 
@@ -26,6 +40,12 @@
     position: absolute;
     left: 0;
     transition: all 2s ease;
+
+    @include mobile {
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+    }
 
     .container {
       width: 100vw;
