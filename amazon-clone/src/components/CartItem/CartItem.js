@@ -1,15 +1,10 @@
 import React from 'react';
-import { useGlobalContext } from '../../StateProvider';
-import './Product.css';
+import './CartItem.css';
 
-function Product({ id, title, image, price, rating }) {
-    const { addToCart } = useGlobalContext();
-    const item = {
-        title, image, price, rating
-    }
-
+function CartItem({ title, image, price, rating }) {
+    console.log(title)
     return (
-        <div className="product">
+        <div className="cart__product">
             <div className="product__info">
                 <p>{title}</p>
                 <p className="product__price">
@@ -23,9 +18,9 @@ function Product({ id, title, image, price, rating }) {
                 </div>
             </div>
             <img src={image} alt={image} />
-            <button onClick={() => addToCart(item)}>Add To Cart</button>
+            <button>Remove from cart</button>
         </div>
     )
 }
 
-export default Product
+export default CartItem;
