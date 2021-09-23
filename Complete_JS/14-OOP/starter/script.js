@@ -87,3 +87,45 @@ person.set = 50;
 // Classes are not hoisted
 // Classes are first class citizen
 // Classes are executed in strict mode
+
+class Account {
+    // Public Properties
+    language = navigator.language;
+
+    // Private Properties
+    #movements = [];
+    #pin;
+
+    constructor(owner, currency, pin) {
+        this.owner = owner;
+        this.currency = currency;
+        // Protected properties
+        // this._movements = [];
+        // this._pin = pin;
+        this.#pin = pin;
+    }
+
+    // Public Interfaces
+    getMMovements() {
+        return this._movements;
+    }
+
+    deposit(val) {
+        this.#movements.push(val);
+    }
+
+    withdraw(val) {
+        this.#movements.push(-val);
+    }
+
+    printDetails() {
+        console.log(`The owner of this account is ${this.owner} and statement is ${this.#movements}`);
+    }
+}
+
+const account = new Account('Rishabh', 'Indian', 1111);
+account.deposit(10000);
+account.deposit(10000);
+account.deposit(10000);
+account.withdraw(10000);
+account.printDetails();
