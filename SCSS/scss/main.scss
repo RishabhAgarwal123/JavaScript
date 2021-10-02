@@ -1,0 +1,77 @@
+@import "./reset";
+@import "./variables";
+
+// Function Declaration
+@function weight($weightName) {
+  @return map-get($fontWeights, $weightName);
+}
+
+// Mixin Creation
+@mixin flexContainer($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+// Creating mixin function for light and dark theme
+@mixin theme($light-theme: true) {
+  // initially it's true means has the light theme
+  @if $light-theme {
+    // using if and elese condition
+    background-color: lighten($primaryColor, 100%);
+    color: darken($textColor, 100%);
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+    margin: 50px 20px;
+  }
+}
+
+body {
+  background-color: $primaryColor;
+  color: $textColor;
+}
+
+.main {
+  // Mixin call
+  @include flexContainer(row);
+  @include mobile {
+    @include flexContainer(column);
+  }
+  width: 100%;
+  &__para1 {
+    // Function Call
+    font-weight: weight(normal);
+    font-size: map-get($fontSizes, desktop);
+
+    &:hover {
+      color: blue;
+    }
+  }
+
+  // We want to apply the same styles with some adddition styles we can use extend
+  &__para2 {
+    @extend .main__para1;
+    &:hover {
+      color: $accentColor;
+    }
+  }
+
+  //   p {
+  //     font-weight: map-get($fontWeights, large);
+  //     font-size: map-get($fontSizes, desktop);
+  //   }
+
+  //   .main__para {
+  //     font-weight: map-get($fontWeights, large);
+  //     font-size: map-get($fontSizes, desktop);
+  //   }
+}
+
+.light {
+  @include theme($light-theme: true); // this will include the theme mixin
+}
