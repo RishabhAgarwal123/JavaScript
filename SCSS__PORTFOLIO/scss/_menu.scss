@@ -1,0 +1,110 @@
+.menu-btn {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  top: 1rem;
+  height: 20px;
+  width: 28px;
+  cursor: pointer;
+  @include transition-ease;
+
+  &__burger {
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    background: setTextColor($primaryColor);
+    @include transition-ease;
+    right: 0;
+    top: 0.5rem;
+
+    &::before {
+      @extend .menu-btn__burger;
+      content: "";
+      top: -8px;
+    }
+
+    &::after {
+      @extend .menu-btn__burger;
+      content: "";
+      top: 8px;
+    }
+
+    &.open {
+      transform: rotate(360deg);
+      background: transparent;
+
+      &::before {
+        transform: rotate(45deg) translate(5px, 7px);
+        background: setTextColor($primaryColor);
+      }
+
+      &::after {
+        width: 28px;
+        transform: rotate(-45deg) translate(5px, -7px);
+        background: setTextColor($primaryColor);
+      }
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  opacity: 0.98;
+  visibility: hidden;
+
+  &.open {
+    visibility: visible;
+  }
+
+  .menu-nav {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background: $primaryColor;
+    list-style-type: none;
+    transform: translateY(-100%);
+    @include transition-ease;
+
+    &.open {
+      transform: translateY(0);
+    }
+
+    &__item {
+      transform: translateX(100vw);
+      @include transition-ease;
+
+      &.open {
+        transform: translateX(0);
+      }
+
+      &.active > a {
+        color: $secondaryColor;
+      }
+    }
+
+    &__link {
+      display: inline-block;
+      font-size: 2rem;
+      text-transform: uppercase;
+      padding: 2rem 0;
+      font-weight: 300;
+      @include transition-ease;
+
+      &:hover {
+        color: $secondaryColor;
+      }
+    }
+  }
+}
+
+@for $i from 1 through 4 {
+  .menu-nav__item:nth-child(#{$i}) {
+    transition-delay: ($i * 0.1s) + 0.15s;
+  }
+}

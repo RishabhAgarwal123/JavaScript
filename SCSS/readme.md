@@ -81,3 +81,7 @@ SCSS -
 14. @extend: In order we want the same styles to be applied onto different selector we can use @extend keyword for that. We can add the sytles of place from where we have extended that and can add styles also.
 15. Can perform Math operations also.
     **\*** Note: With sass we can cannot mix different types that is 80% - 80px This will not work in sass. To work they have to be of same types.
+16. We can use for loop.
+    syntax:
+    @for $i from 1 through 4 {
+    }

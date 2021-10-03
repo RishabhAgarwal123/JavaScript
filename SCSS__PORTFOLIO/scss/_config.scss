@@ -1,0 +1,27 @@
+$primaryColor: #272727;
+$secondaryColor: #ff652f;
+$iconColor: blue;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin transition-ease {
+  transition: all 1s ease-in-out;
+}
+
+@mixin onHover($theme: true) {
+  @if $theme {
+    color: darken($iconColor, 100%);
+  }
+}
+
+@function setTextColor($color) {
+  @if (lightness($color) > 40%) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}

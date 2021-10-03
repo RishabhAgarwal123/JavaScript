@@ -1,0 +1,80 @@
+@import "./config";
+@import "./home";
+@import "./menu";
+@import "./about";
+@import "./projects";
+
+body {
+  background-color: $primaryColor;
+  color: setTextColor($primaryColor);
+  height: 100vh;
+  font-family: "Segoe UI", Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1;
+  scroll-behavior: smooth;
+  // Snap scrolling
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none; // Firefox
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // For each section
+  > * {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    scroll-snap-align: start;
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
+}
+
+a {
+  color: setTextColor($primaryColor);
+  text-decoration: none;
+}
+
+.text-secondary {
+  color: $secondaryColor;
+}
+
+header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  padding: 1rem;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+
+  .social-icons {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+
+    a {
+      padding: 0.4rem;
+      @include transition-ease;
+
+      &:hover {
+        @include onHover($theme: true);
+      }
+    }
+  }
+}
+
+footer {
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0.4rem;
+  right: 1rem;
+  text-align: right;
+  padding: 1rem;
+  color: setTextColor($primaryColor);
+}
