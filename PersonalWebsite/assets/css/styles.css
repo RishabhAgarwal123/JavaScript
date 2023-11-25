@@ -161,7 +161,7 @@ img {
 
 /*==================== LAYOUT ====================*/
 .container {
-  max-width: 768px;
+  max-width: 800px;
   margin: 0 var(--mb-1-5);
 }
 
@@ -441,6 +441,8 @@ header {
 /*==================== SKILLS ====================*/
 .skills__container {
   row-gap: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .skills__header {
@@ -1090,11 +1092,6 @@ header {
     order: 1;
     justify-self: center;
   }
-
-  /* .skills {
-    display: flex;
-    flex-direction: row;
-  } */
 
   .about__container,
   .skills__container,

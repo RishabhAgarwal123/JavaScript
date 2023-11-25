@@ -9,14 +9,12 @@
     position: relative;
     scroll-behavior: smooth;
 
-    // Snap scrolling
     scroll-snap-type: y mandatory;
-    scrollbar-width: none; // Firefox
+    scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
     }
 
-    // For each section
     > * {
       width: 100vw;
       height: calc(100vh - 60px);
