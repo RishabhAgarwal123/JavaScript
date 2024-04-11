@@ -1,0 +1,10 @@
+<button (click)="getProducts()">Get Products</button>
+<div *ngIf="product">
+    <ul>Product
+        <li>{{product?.title | ToUpperCase}}</li>
+        <li>{{product?.description | ToLowerCase}}</li>
+        <li>{{product?.price | currency:'INR'}}</li>
+        <li>{{product?.category | ToUpperCase}}</li>
+        <li>{{currentDate | date:'mediumDate' | uppercase}}</li>
+    </ul>
+</div>
