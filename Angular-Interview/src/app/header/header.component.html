@@ -1,1 +1,9 @@
-<p>header works!</p>
+<h1>Default (Automatic Change Detection)</h1>
+<div>
+    <button (click)="increment()">Increment</button>
+    <span>Counter: {{counter}}</span>
+    <button (click)="decrement()">Decrement</button>
+    <ul *ngFor="let action of actions">
+        <li>{{action}}</li>
+    </ul>
+</div>

@@ -1,3 +1,5 @@
+<app-header></app-header>
+<app-signals></app-signals>
 <div>
     Data Binding:
     <p>String Interpolation: <strong>{{title}}</strong></p>
@@ -5,4 +7,13 @@
     <p (click)="handleEventBinding()"><strong>Event Binding</strong></p>
     <input type="text" [(ngModel)]="username">
     <p>Your username is: <strong>{{username}}</strong></p>
+</div>
+
+<div style="display: flex; gap: 10px;">
+    <div style="border: 1px solid black; height: 100px; padding: 10px; flex: 1;">
+        <app-template-driven></app-template-driven>
+    </div>
+    <div style="border: 1px solid black; height: 100px; padding: 10px; flex: 1;">
+        <app-reactive></app-reactive>
+    </div>
 </div>

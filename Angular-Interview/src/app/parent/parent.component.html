@@ -1,3 +1,5 @@
-<app-child [fromParent]="parentContent" (messageEvent)="receiveMessageFromChild($event)"></app-child>
+<app-child [fromParent]="parentContent" [arr]="arr" (messageEvent)="receiveMessageFromChild($event)"></app-child>
 <p>{{recievedMessage}}</p>
-<!-- <p>{{viewChildContent}}</p> -->
+<button (click)="callChildMethod()">Call For Child</button>
+<!-- {{parent()}} -->
+Counter: {{counter}}

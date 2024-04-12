@@ -1,0 +1,8 @@
+<div>
+    <button (click)="getAllProducts()">Get All Products</button>
+    <ul *ngIf="products.length !== 0">
+        <ng-container *ngFor="let product of products">
+            <li (click)="moveToProduct(product)">{{product.title}}</li>
+        </ng-container>
+    </ul>
+</div>

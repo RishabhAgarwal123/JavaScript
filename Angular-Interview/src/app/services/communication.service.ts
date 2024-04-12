@@ -15,4 +15,18 @@ export class CommunicationService {
   getProducts(id: number) {
     return this.webRequestService.get<Array<Object>>(`products/${id}`);
   }
+
+  getAllProducts() {
+    return this.webRequestService.get<Array<Object>>('products?limit=5');
+  }
+
+  getSomeDelay() {
+    return new Promise(resolve => {
+      setTimeout(() => resolve('Hello async pipe'), 2000);
+    })
+  }
+
+  isAuthenticated(name: string) {
+    return name === 'Rishabh' ? true: false;
+  }
 }

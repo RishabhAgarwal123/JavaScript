@@ -1,0 +1,9 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <h4>Template Driven Form</h4>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email" required email>
+    <button type="submit">Submit</button>
+    {{user.name}}-{{user.email}}
+</form>

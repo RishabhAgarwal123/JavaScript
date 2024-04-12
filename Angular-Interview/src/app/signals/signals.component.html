@@ -1,0 +1,9 @@
+<h1>Using Signals</h1>
+<div>
+    <button (click)="increment()">Signal Increment</button>
+    <span>Counter: {{counter()}}</span>
+    <button (click)="decrement()">Signal Decrement</button>
+    <ul *ngFor="let action of actions()">
+        <li>{{action}}</li>
+    </ul>
+</div>

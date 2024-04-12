@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  actions: string[] = [];
+  counter: number = 0;
 
+  increment() {
+    this.counter++;
+    this.actions.push('INCREMENT')
+  }
+
+  decrement() {
+    this.counter--;
+    this.actions.push('DECREMENT')
+  }
 }

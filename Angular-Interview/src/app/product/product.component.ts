@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { CommunicationService } from '../communication.service';
+import { ActivatedRoute } from '@angular/router';
+import { CommunicationService } from '../services/communication.service';
 import { Product }from './models/Product.model';
 
 @Component({
@@ -8,14 +9,21 @@ import { Product }from './models/Product.model';
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
-  constructor(private communicationService: CommunicationService) {}
+  constructor(private communicationService: CommunicationService, private route: ActivatedRoute) {}
   product = {} as Product;
   currentDate = new Date();
+  dataPromise: any = '';
+  productId: number = 0;
 
-  getProducts() {
-    this.communicationService.getProducts(2).subscribe((res: any) => {
+  ngOnInit() {
+    this.productId = this.route.snapshot.params['id'];
+    this.getProduct(this.productId);
+  }
+  
+  getProduct(id: any) {
+    this.communicationService.getProducts(id).subscribe((res: any) => {
       this.product = res;
-      console.log(this.product)
     })
+    this.dataPromise = this.communicationService.getSomeDelay()
   }
 }
