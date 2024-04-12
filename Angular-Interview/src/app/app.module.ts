@@ -15,6 +15,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoggerInterceptor } from './interceptors/logger.interceptor';
 import { TemplateDrivenComponent } from './forms/template-driven/template-driven.component';
 import { ReactiveComponent } from './forms/reactive/reactive.component';
+import { StoreModule } from '@ngrx/store';
+import { countReducer } from './redux/counterReducer';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -26,13 +29,15 @@ import { ReactiveComponent } from './forms/reactive/reactive.component';
     ReactiveComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     ProductsModule,
-    SharedModule // Eagerly Loaded module means all the components, directives, pipes all are available with the appModule increases bundle size.
+    StoreModule.forRoot({ counterReducer: countReducer}),
+    SharedModule,
+    EffectsModule.forRoot([]), // Eagerly Loaded module means all the components, directives, pipes all are available with the appModule increases bundle size.
   ],
   providers: [
     provideClientHydration(),

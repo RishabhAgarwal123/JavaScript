@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { decrement, increment, loadCount } from '../redux/counterActions';
+import { Store } from '@ngrx/store';
+import { selectCount } from '../redux/counterSelector';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +10,19 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   actions: string[] = [];
-  counter: number = 0;
+  counter$ = this.store.select(selectCount);
+
+  constructor(private store: Store) {}
 
   increment() {
-    this.counter++;
-    this.actions.push('INCREMENT')
+    this.store.dispatch(increment());
   }
 
   decrement() {
-    this.counter--;
-    this.actions.push('DECREMENT')
+    this.store.dispatch(decrement());
+  }
+
+  load() {
+    this.store.dispatch(loadCount());
   }
 }
