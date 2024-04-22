@@ -1,10 +1,10 @@
-import { Directive, HostBinding, HostListener, Renderer2 } from "@angular/core";
+import { Directive, HostBinding, HostListener } from "@angular/core";
 
 @Directive({
     selector: '[addBorder]'
 })
 export class AddBorderDirective {
-    constructor(private renderder2: Renderer2) {}
+    constructor() {}
 
     @HostBinding('style.border') border: string = '';
     

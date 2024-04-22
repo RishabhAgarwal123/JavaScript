@@ -12,11 +12,11 @@ export class WebRequestService {
         this.ROOT_URL = 'https://fakestoreapi.com/'
     }
 
-    get<T>(url: string): Observable<T> {
+    get<T>(url: string) {
         return this.httpClient.get<T>(`${this.ROOT_URL}${url}`);
     }
 
-    post<T>(url: string, paylaod: Object): Observable<T> {
+    post<T>(url: string, paylaod: Object) {
         return this.httpClient.post<T>(`${this.ROOT_URL}/${url}`, paylaod);
     }
 }

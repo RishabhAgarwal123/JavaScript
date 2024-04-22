@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { mergeMap, map } from 'rxjs';
 import { WebRequestService } from './webrequest.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunicationService {
-  
+  mergeMapResult: any;
   constructor(private webRequestService: WebRequestService) { }
 
   getUsers() {
@@ -28,5 +29,18 @@ export class CommunicationService {
 
   isAuthenticated(name: string) {
     return name === 'Rishabh' ? true: false;
+  }
+
+  getMergeDetails() {
+    this.webRequestService.get<Object>('users/2')
+    .pipe(
+      map(data => {
+        return data
+      }),
+      mergeMap(data => this.webRequestService.get<Object>(`products/2]}`))).subscribe(data => {
+      this.mergeMapResult = data
+    });
+
+    console.log(this.mergeMapResult)
   }
 }
